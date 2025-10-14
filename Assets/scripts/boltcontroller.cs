@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class boltcontroller : MonoBehaviour
 {
+
     void Start()
     {
         // Destroy(this.gameObject, 3);
@@ -20,13 +21,14 @@ public class boltcontroller : MonoBehaviour
             Destroy(gameObject);
         }
 
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "elaking")
+
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            Destroy(gameObject);
+            if (collision.gameObject.tag == "elaking")
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

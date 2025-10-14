@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class enemycontroller : MonoBehaviour
 {
+    [SerializeField] // bara kolla hur bra min dator är
+    bool benchmark = true;
 
     [SerializeField]
     GameObject boomprefab;
@@ -21,9 +23,12 @@ public class enemycontroller : MonoBehaviour
     {
         transform.Translate(speed * Vector2.down * Time.deltaTime);
 
-        if (transform.position.y < Camera.main.orthographicSize - 11)
+        if (benchmark == false)
         {
-            Destroy(gameObject);
+            if (transform.position.y < Camera.main.orthographicSize - 11)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
