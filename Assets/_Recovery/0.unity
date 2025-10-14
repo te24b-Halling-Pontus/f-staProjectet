@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d1515b5b9d5b7d4a9d6f8cf9f205887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  wait: 5
+  wait: 2
   waited: 0
   missilprefab: {fileID: 148150790435210982, guid: 89f952721a8d42e47b469c0ff584eaf3,
     type: 3}

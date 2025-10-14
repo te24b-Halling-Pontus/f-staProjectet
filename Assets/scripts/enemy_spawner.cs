@@ -5,21 +5,27 @@ public class enemy_spawner : MonoBehaviour
 {
     [SerializeField]
     float wait = 0.5f;
-    float wait2 = 0;
-    
+    [SerializeField]
+   
+    float waited = 0;
+    [SerializeField]
+    GameObject missilprefab;
+
     [SerializeField]
     GameObject enemyPrefab;
 
     // Update is called once per frame
     void Update()
     {
-        wait2 += Time.deltaTime;
-        if (wait < wait2)
-            {
+        waited += Time.deltaTime;
+        if (wait < waited)
+        {
             Instantiate(enemyPrefab);
-            wait2 = 0;
-            }
-            
-        
+            Instantiate(missilprefab);
+
+            waited = 0;
+        }
+
+
     }
 }
