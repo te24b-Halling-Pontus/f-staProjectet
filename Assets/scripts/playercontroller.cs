@@ -22,13 +22,16 @@ public class playercontroller : MonoBehaviour
     [SerializeField]
     float hp = 0;
     [SerializeField]
-    float maxhp = 1.5f;
+    float maxhp = 3;
 
     [SerializeField]
     Slider hpslider; 
     void Start()
     {
-        hp = maxhp--;
+        hp = maxhp;
+        hpslider.value = hp;
+        hpslider.maxValue = maxhp;
+        hpslider.value = hp;
     }
     void Update()
     {
@@ -43,6 +46,7 @@ public class playercontroller : MonoBehaviour
         //skjuta
         timeSInceLastShot += Time.deltaTime;
 
+        hpslider.value = hp;
 
         if (Input.GetAxisRaw("Fire1") > 0 && timeSInceLastShot > timeBetweenShots)
         {
@@ -58,21 +62,11 @@ public class playercontroller : MonoBehaviour
     {
         if (collision.gameObject.tag == "elaking")
         {
-            if (hp > 0)
+                hp -= 1;
+            if (hp <= 0)
             {
-                hp -= 0.5f;
-                hpslider.value = hp;
-                print((hp + 1) + "HP");
-            }
-            else
-            {
-                // Instantiate(boomprefab, transform.position, Quaternion.identity);
-                // Destroy(gameObject);
-                // print("0 HP");
-                // coola grejer
                 SceneManager.LoadScene("Game over");
-                
-            }
+            }   
         }
     }
 }

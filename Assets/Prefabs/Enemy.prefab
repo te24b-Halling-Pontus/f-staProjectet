@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e478432dcacaeb479ee30a7e1ee3da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemycontroller
+  benchmark: 0
   boomprefab: {fileID: 1052859802758272, guid: 7e5c5b1c1b18764459c69710c7dc4adc, type: 3}
 --- !u!58 &6746700552794650014
 CircleCollider2D:
