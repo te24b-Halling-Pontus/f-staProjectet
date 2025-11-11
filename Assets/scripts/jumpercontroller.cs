@@ -12,6 +12,7 @@ public class jumpercontroller : MonoBehaviour
 
     [SerializeField]
     LayerMask groundLayer;
+    
 
     void FixedUpdate()
     {

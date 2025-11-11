@@ -7,7 +7,9 @@ public class enemycontroller : MonoBehaviour
     bool benchmark = true;
 
     [SerializeField]
-    GameObject boomprefab;
+    GameObject k;
+    [SerializeField]
+    GameObject boomPrefab;
     float speed = 5;
     void Start()
     {
@@ -34,7 +36,8 @@ public class enemycontroller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Instantiate(boomprefab, transform.position, Quaternion.identity);
+        Instantiate(boomPrefab, transform.position, Quaternion.identity);
+        Instantiate(k, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

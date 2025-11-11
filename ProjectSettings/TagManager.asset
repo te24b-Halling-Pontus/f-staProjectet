@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - elaking
+  - powerUp
+  - speedPowerUp
+  - killBonusPowerUp
   layers:
   - Default
   - TransparentFX

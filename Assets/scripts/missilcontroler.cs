@@ -2,30 +2,36 @@ using UnityEngine;
 
 public class missilcontroler : MonoBehaviour
 {
-[SerializeField]
-float speed = 9;
+    [SerializeField]
+    GameObject boomPrefab;
 
     [SerializeField]
-    GameObject rödljus;
+    float speed = 9;
+
+    [SerializeField]
+    float waittime = 5;
+    [SerializeField]
+    float waited = 0;
 
     void Start()
     {
-        
-        Vector2 position = new();
-        position.x = Random.Range(-11f, 11f);
-        position.y = (Camera.main.orthographicSize + 1);
-        transform.position = position;
-
-        Instantiate(rödljus, transform.position, Quaternion.identity);
         
     }
 
     // gör i enemycontroller 
     void Update()
     {
-        transform.Translate(speed * Vector2.up * Time.deltaTime);
+        transform.Translate(speed * Vector2.down * Time.deltaTime);
 
-        
-         
+        if (transform.position.y < Camera.main.orthographicSize - 11)
+        {
+            Destroy(gameObject);
+        }
+
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Instantiate(boomPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

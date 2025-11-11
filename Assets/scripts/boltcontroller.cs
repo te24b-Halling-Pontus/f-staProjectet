@@ -20,15 +20,13 @@ public class boltcontroller : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
 
-
-
-        void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "elaking")
         {
-            if (collision.gameObject.tag == "elaking")
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }
