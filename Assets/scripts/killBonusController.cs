@@ -1,8 +1,13 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class killBonus : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField]
+    float powerUpWait = 15;
+    float powerUpWaited = 0;
+    bool powerUpActive = false;
+    playercontroller player;
     void Start()
     {
 
@@ -11,10 +16,30 @@ public class killBonus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (powerUpActive)
+        {
+            powerUpWaited += Time.deltaTime;
+            if (powerUpWaited > powerUpWait)
+            {
+                player.timeBetweenShots *= 2;
+                powerUpActive = false;
+                Destroy(gameObject);
+            }
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            player = collision.GetComponent<playercontroller>();
+            if (player != null)
+            {
+                powerUpWaited = 0;
+                powerUpActive = true;
+                player.timeBetweenShots /= 2;
+                GetComponent<Collider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+        }
     }
 }

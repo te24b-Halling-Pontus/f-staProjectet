@@ -7,10 +7,13 @@ public class enemycontroller : MonoBehaviour
     bool benchmark = true;
 
     [SerializeField]
-    GameObject k;
+    GameObject KillBonusPreFab;
+    [SerializeField]
+    GameObject speedBonusPreFab;
     [SerializeField]
     GameObject boomPrefab;
     float speed = 5;
+    int witchPowerUp;
     void Start()
     {
         Vector2 position = new();
@@ -37,7 +40,15 @@ public class enemycontroller : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         Instantiate(boomPrefab, transform.position, Quaternion.identity);
-        Instantiate(k, transform.position, Quaternion.identity);
+        witchPowerUp = Random.Range(1,50);
+        if (witchPowerUp == 6)
+        {
+            Instantiate(speedBonusPreFab, transform.position, Quaternion.identity);
+        }
+        else if (witchPowerUp == 7)
+        {
+            Instantiate(KillBonusPreFab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

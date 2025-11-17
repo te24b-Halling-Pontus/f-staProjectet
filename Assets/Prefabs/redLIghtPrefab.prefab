@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3545152761983199043}
   - component: {fileID: -7746030768088204700}
   m_Layer: 0
-  m_Name: New Piskel_0
+  m_Name: redLIghtPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

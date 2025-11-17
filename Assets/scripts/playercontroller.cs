@@ -7,21 +7,21 @@ using UnityEngine.UIElements;
 
 public class playercontroller : MonoBehaviour
 {
-    bool speedBonusPowerUp = false;
-    bool killBonusPowerUp = false;
-    float speedBonusWaited;
+    public bool speedBonusPowerUp = false;
+    public bool killBonusPowerUp = false;
+    public float speedBonusWaited;
     [SerializeField]
     float powerUpwait = 15f;
-    float killBonusWaited;
+    public float killBonusWaited;
     [SerializeField]
-     float speed = 1f;
+    public float speed = 1f;
 
     [SerializeField]
-     GameObject boltPrefab;
+    GameObject boltPrefab;
 
     float timeSInceLastShot = 0;
     [SerializeField]
-    float timeBetweenShots = 0.5f;
+    public float timeBetweenShots = 0.5f;
 
     [SerializeField]
     GameObject boomprefab;
@@ -37,12 +37,14 @@ public class playercontroller : MonoBehaviour
     UnityEngine.UI.Slider powerUpSlider1;
     [SerializeField]
     UnityEngine.UI.Slider poweUpSlider2;
+
     void Start()
     {
         hp = maxhp;
         hpslider.value = hp;
         hpslider.maxValue = maxhp;
         powerUpSlider1.maxValue = powerUpwait;
+        powerUpSlider1.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -54,14 +56,13 @@ public class playercontroller : MonoBehaviour
         transform.Translate(movement * 0.02f);
 
         transform.Translate(movement * speed * Time.deltaTime);
-        //skjuta
-        timeSInceLastShot += Time.deltaTime;
 
         hpslider.value = hp;
+        powerUpSlider1.value = killBonusWaited;
+        timeSInceLastShot += Time.deltaTime;
 
 
-
-
+        //skjuta
         if (Input.GetAxisRaw("Fire1") > 0 && timeSInceLastShot > timeBetweenShots)
         {
             AudioSource speaker = GetComponent<AudioSource>();
@@ -70,63 +71,17 @@ public class playercontroller : MonoBehaviour
             Instantiate(boltPrefab, transform.position, Quaternion.identity);
             timeSInceLastShot = 0;
         }
-
-        if (killBonusPowerUp)
-        {
-            killBonusWaited += Time.deltaTime;
-            if (killBonusWaited < powerUpwait)
-            {
-                timeBetweenShots /= 2;
-            }
-            else if (killBonusWaited > powerUpwait)
-            {
-                timeBetweenShots *= 2;
-                killBonusWaited = 0;
-                killBonusPowerUp = false;
-            }
-        }
-        if (speedBonusPowerUp)
-        {
-            speedBonusWaited += Time.deltaTime;
-            if (speedBonusWaited < powerUpwait)
-            {
-                speed *= 2;
-            }
-            else if (speedBonusWaited > powerUpwait)
-            {
-                speed /= 2;
-                speedBonusWaited = 0;
-                speedBonusPowerUp = false;
-            }
-        }
-        powerUpSlider1.value = killBonusWaited;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "elaking")
+        if (collision.gameObject.tag == "Enemy")
         {
             hp -= 1;
             if (hp <= 0)
             {
                 SceneManager.LoadScene("Game over");
             }
-        }
-        else if (collision.gameObject.tag == "killBonusPowerUp")
-        {
-            if (killBonusPowerUp)
-            {
-                killBonusWaited -= powerUpwait;
-            }
-            killBonusPowerUp = true;
-        }
-        else if (collision.gameObject.tag == "speedBonusPowerUp")
-        {
-            if (speedBonusPowerUp)
-            {
-                speedBonusWaited -= powerUpwait;
-            }
-            speedBonusPowerUp = true;
         }
     }
 }

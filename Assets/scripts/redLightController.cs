@@ -27,9 +27,8 @@ public class rovLjusController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        waited        += Time.deltaTime;
+        waited += Time.deltaTime;
         waitedDestroy += Time.deltaTime;
-
         if (waited > wait)
         {
             synlig = !synlig;

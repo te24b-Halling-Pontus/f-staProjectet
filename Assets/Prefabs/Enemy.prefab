@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3095184216747501001}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: elaking
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemycontroller
   benchmark: 0
-  k: {fileID: 2674005841936562798, guid: 41a7ec61253f6574ea73ed8488f6c42d, type: 3}
+  KillBonusPreFab: {fileID: 2674005841936562798, guid: 41a7ec61253f6574ea73ed8488f6c42d,
+    type: 3}
+  speedBonusPreFab: {fileID: 5799854923097061421, guid: fd15facf3afd52e459bfa4d2edf33228,
+    type: 3}
   boomPrefab: {fileID: 1052859802758272, guid: 7e5c5b1c1b18764459c69710c7dc4adc, type: 3}
 --- !u!58 &3095184216747501001
 CircleCollider2D:

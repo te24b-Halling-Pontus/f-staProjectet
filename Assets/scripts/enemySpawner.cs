@@ -5,35 +5,32 @@ public class enemy_spawner : MonoBehaviour
 {
     [SerializeField]
     float wait = 0.5f;
-    [SerializeField]
-    float missilWait = 7f;
-    float missilWaited = 0f;
     float waited = 0;
     [SerializeField]
-    GameObject rödLjusPrefab;
+    GameObject redLightPreFab;
 
     [SerializeField]
     GameObject enemyPrefab;
-    
+    int whatToSpawn;
 
     // Update is called once per frame
     void Update()
     {
-        missilWaited += Time.deltaTime;
         waited += Time.deltaTime;
-
         if (wait < waited)
         {
-            Instantiate(enemyPrefab);
+            whatToSpawn = Random.Range(1,11);
             waited = 0;
+            if (whatToSpawn < 7)
+            {
+                Instantiate(enemyPrefab);
+            }
+            else if (whatToSpawn >= 7)
+            {
+                Instantiate(redLightPreFab);
+            }
+            
         }
-        
-        if (missilWait < missilWaited)
-        {
-            Instantiate(rödLjusPrefab);
-            missilWaited = 0;
-        }
-
 
     }
 }

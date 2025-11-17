@@ -8,6 +8,8 @@ TagManager:
   - powerUp
   - speedPowerUp
   - killBonusPowerUp
+  - spelare
+  - Enemy
   layers:
   - Default
   - TransparentFX
