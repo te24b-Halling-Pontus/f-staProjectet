@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class killBonus : MonoBehaviour
@@ -6,24 +5,46 @@ public class killBonus : MonoBehaviour
     [SerializeField]
     float powerUpWait = 15;
     float powerUpWaited = 0;
-    bool powerUpActive = false;
+    public bool killPowerUpActive = false;
     playercontroller player;
-    void Start()
-    {
+    [SerializeField]
+    UnityEngine.UI.Slider powerUpSlider1;
+    [SerializeField]
+    UnityEngine.UI.Slider powerUpSlider2;
 
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (powerUpActive)
+        if (killPowerUpActive)
         {
+            // GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>()
             powerUpWaited += Time.deltaTime;
-            if (powerUpWaited > powerUpWait)
+            if (GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>() == true)
             {
-                player.timeBetweenShots *= 2;
-                powerUpActive = false;
-                Destroy(gameObject);
+                powerUpSlider2.gameObject.SetActive(true);
+                powerUpSlider2.maxValue = powerUpWait;
+                powerUpSlider2.value = powerUpWaited;
+                if (powerUpWaited > powerUpWait)
+                {
+                    player.timeBetweenShots *= 2;
+                    killPowerUpActive = false;
+                    powerUpSlider2.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                }
+            }
+            else
+            {
+                powerUpSlider1.gameObject.SetActive(true);
+                powerUpSlider1.maxValue = powerUpWait;
+                powerUpSlider1.value = powerUpWaited;
+                if (powerUpWaited > powerUpWait)
+                {
+                    player.timeBetweenShots *= 2;
+                    killPowerUpActive = false;
+                    powerUpSlider1.gameObject.SetActive(false);
+                    Destroy(gameObject);
+                }
             }
         }
     }
@@ -35,7 +56,7 @@ public class killBonus : MonoBehaviour
             if (player != null)
             {
                 powerUpWaited = 0;
-                powerUpActive = true;
+                killPowerUpActive = true;
                 player.timeBetweenShots /= 2;
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<SpriteRenderer>().enabled = false;

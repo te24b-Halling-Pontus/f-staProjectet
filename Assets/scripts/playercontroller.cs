@@ -7,21 +7,12 @@ using UnityEngine.UIElements;
 
 public class playercontroller : MonoBehaviour
 {
-    public bool speedBonusPowerUp = false;
-    public bool killBonusPowerUp = false;
-    public float speedBonusWaited;
-    [SerializeField]
-    float powerUpwait = 15f;
-    public float killBonusWaited;
-    [SerializeField]
     public float speed = 1f;
 
     [SerializeField]
     GameObject boltPrefab;
 
     float timeSInceLastShot = 0;
-    [SerializeField]
-    public float timeBetweenShots = 0.5f;
 
     [SerializeField]
     GameObject boomprefab;
@@ -34,17 +25,14 @@ public class playercontroller : MonoBehaviour
     [SerializeField]
     UnityEngine.UI.Slider hpslider;
     [SerializeField]
-    UnityEngine.UI.Slider powerUpSlider1;
-    [SerializeField]
-    UnityEngine.UI.Slider poweUpSlider2;
+    public float timeBetweenShots = 0.5f;
+
 
     void Start()
     {
         hp = maxhp;
         hpslider.value = hp;
         hpslider.maxValue = maxhp;
-        powerUpSlider1.maxValue = powerUpwait;
-        powerUpSlider1.gameObject.SetActive(false);
     }
     void Update()
     {
@@ -58,7 +46,6 @@ public class playercontroller : MonoBehaviour
         transform.Translate(movement * speed * Time.deltaTime);
 
         hpslider.value = hp;
-        powerUpSlider1.value = killBonusWaited;
         timeSInceLastShot += Time.deltaTime;
 
 
@@ -71,16 +58,16 @@ public class playercontroller : MonoBehaviour
             Instantiate(boltPrefab, transform.position, Quaternion.identity);
             timeSInceLastShot = 0;
         }
-    }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            hp -= 1;
-            if (hp <= 0)
+            if (collision.gameObject.tag == "Enemy")
             {
-                SceneManager.LoadScene("Game over");
+                hp -= 1;
+                if (hp <= 0)
+                {
+                    SceneManager.LoadScene("Game over");
+                }
             }
         }
     }

@@ -330,20 +330,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ee65a727a1e5c43bf4990169b6e163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speedBonusPowerUp: 0
-  killBonusPowerUp: 0
-  speedBonusWaited: 0
-  powerUpwait: 15
-  killBonusWaited: 0
   speed: 6.9
   boltPrefab: {fileID: 1287502262990996, guid: 4dd15c7fe51711c48ba135fef149bbf8, type: 3}
-  timeBetweenShots: 0.25
   boomprefab: {fileID: 1052859802758272, guid: 7e5c5b1c1b18764459c69710c7dc4adc, type: 3}
-  hp: 0
+  hp: 3
   maxhp: 3
   hpslider: {fileID: 1051898}
-  powerUpSlider1: {fileID: 1550166936}
-  poweUpSlider2: {fileID: 0}
+  timeBetweenShots: 0
 --- !u!82 &298520872
 AudioSource:
   m_ObjectHideFlags: 0

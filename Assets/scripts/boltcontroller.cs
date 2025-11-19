@@ -4,12 +4,6 @@ using UnityEngine;
 public class boltcontroller : MonoBehaviour
 {
 
-    void Start()
-    {
-        // Destroy(this.gameObject, 3);
-    }
-
-
     [SerializeField]
     float boltspeed = 100f;
     void Update()
