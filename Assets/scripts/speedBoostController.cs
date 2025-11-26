@@ -19,7 +19,7 @@ public class speedBoostController : MonoBehaviour
     killBonus killBonus;
     void Start()
     {
-        powerUpWaited += Time.deltaTime;
+        
         if (killBonus.killPowerUpActive == true)
         {
             twoPowerUpsActive = true;
@@ -33,6 +33,7 @@ public class speedBoostController : MonoBehaviour
     {
         if (speedPowerUpActive)
         {
+            powerUpWaited += Time.deltaTime;
             if (twoPowerUpsActive)
             {
                 powerUpSlider2.gameObject.SetActive(true);

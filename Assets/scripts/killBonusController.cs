@@ -14,12 +14,13 @@ public class killBonus : MonoBehaviour
     [SerializeField]
     Slider powerUpSlider2;
     public bool firstPowerUpActive;
-    public bool twoPowerUpsActive;
+    bool twoPowerUpsActive;
+    speedBoostController speedBoost;
 
     void Start()
     {
         powerUpWaited += Time.deltaTime;
-        if (GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>() == true)
+        if (speedBoost.speedPowerUpActive == true)
         {
             twoPowerUpsActive = true;
         }

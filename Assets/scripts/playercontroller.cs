@@ -23,7 +23,6 @@ public class playercontroller : MonoBehaviour
 
     [SerializeField]
     Slider hpslider;
-    [SerializeField]
     public float timeBetweenShots = 0.5f;
     [SerializeField]
     Slider powerUpSlider1;

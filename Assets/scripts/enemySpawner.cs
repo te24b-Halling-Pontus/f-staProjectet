@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class enemy_spawner : MonoBehaviour
 {
@@ -12,14 +12,20 @@ public class enemy_spawner : MonoBehaviour
     [SerializeField]
     GameObject enemyPrefab;
     int whatToSpawn;
+    [SerializeField]
+    Slider powerUpSlider1;
+    [SerializeField]
+    Slider powerUpSlider2;
+    killBonus killBonus;
+    speedBoostController speedBoost;
 
-    // Update is called once per frame
+
     void Update()
     {
         waited += Time.deltaTime;
         if (wait < waited)
         {
-            whatToSpawn = Random.Range(1,11);
+            whatToSpawn = Random.Range(1, 11);
             waited = 0;
             if (whatToSpawn < 7)
             {
@@ -29,8 +35,7 @@ public class enemy_spawner : MonoBehaviour
             {
                 Instantiate(redLightPreFab);
             }
-            
         }
-
+                
     }
 }
