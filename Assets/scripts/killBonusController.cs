@@ -1,4 +1,6 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class killBonus : MonoBehaviour
 {
@@ -8,19 +10,30 @@ public class killBonus : MonoBehaviour
     public bool killPowerUpActive = false;
     playercontroller player;
     [SerializeField]
-    UnityEngine.UI.Slider powerUpSlider1;
+    Slider powerUpSlider1;
     [SerializeField]
-    UnityEngine.UI.Slider powerUpSlider2;
+    Slider powerUpSlider2;
+    public bool firstPowerUpActive;
+    public bool twoPowerUpsActive;
 
-
-    // Update is called once per frame
+    void Start()
+    {
+        powerUpWaited += Time.deltaTime;
+        if (GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>() == true)
+        {
+            twoPowerUpsActive = true;
+        }
+        else
+        {
+            firstPowerUpActive = true;
+        }
+    }
     void Update()
     {
         if (killPowerUpActive)
         {
-            // GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>()
-            powerUpWaited += Time.deltaTime;
-            if (GameObject.Find("speedPowerUpActive").GetComponent<speedBoostController>() == true)
+
+            if (twoPowerUpsActive)
             {
                 powerUpSlider2.gameObject.SetActive(true);
                 powerUpSlider2.maxValue = powerUpWait;
@@ -33,7 +46,7 @@ public class killBonus : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            else
+            else if (firstPowerUpActive)
             {
                 powerUpSlider1.gameObject.SetActive(true);
                 powerUpSlider1.maxValue = powerUpWait;

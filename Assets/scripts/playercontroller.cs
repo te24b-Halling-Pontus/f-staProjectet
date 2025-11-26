@@ -1,9 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
-using System.Threading;
-using UnityEngine.UIElements;
+
+
 
 public class playercontroller : MonoBehaviour
 {
@@ -23,16 +22,22 @@ public class playercontroller : MonoBehaviour
     float maxhp = 3;
 
     [SerializeField]
-    UnityEngine.UI.Slider hpslider;
+    Slider hpslider;
     [SerializeField]
     public float timeBetweenShots = 0.5f;
+    [SerializeField]
+    Slider powerUpSlider1;
+    [SerializeField]
+    Slider powerUpSlider2;
 
 
     void Start()
     {
+        powerUpSlider1.gameObject.SetActive(false);
+        powerUpSlider2.gameObject.SetActive(false);
         hp = maxhp;
-        hpslider.value = hp;
         hpslider.maxValue = maxhp;
+        hpslider.value = hp;
     }
     void Update()
     {
@@ -45,7 +50,6 @@ public class playercontroller : MonoBehaviour
 
         transform.Translate(movement * speed * Time.deltaTime);
 
-        hpslider.value = hp;
         timeSInceLastShot += Time.deltaTime;
 
 
@@ -59,15 +63,16 @@ public class playercontroller : MonoBehaviour
             timeSInceLastShot = 0;
         }
 
-        void OnTriggerEnter2D(Collider2D collision)
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
         {
-            if (collision.gameObject.tag == "Enemy")
+            hp -= 1;
+            hpslider.value = hp;
+            if (hp <= 0)
             {
-                hp -= 1;
-                if (hp <= 0)
-                {
-                    SceneManager.LoadScene("Game over");
-                }
+                SceneManager.LoadScene("Game over");
             }
         }
     }

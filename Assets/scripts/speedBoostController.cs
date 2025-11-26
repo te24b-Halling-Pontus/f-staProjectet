@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class speedBoostController : MonoBehaviour
 {
 
@@ -10,21 +11,30 @@ public class speedBoostController : MonoBehaviour
     public bool speedPowerUpActive = false;
     playercontroller player;
     [SerializeField]
-    UnityEngine.UI.Slider powerUpSlider1;
+    Slider powerUpSlider1;
     [SerializeField]
-    UnityEngine.UI.Slider powerUpSlider2;
-
+    Slider powerUpSlider2;
+    bool firstPowerUpActive;
+    bool twoPowerUpsActive;
+    killBonus killBonus;
     void Start()
     {
-        powerUpSlider1.gameObject.SetActive(false);
-        powerUpSlider2.gameObject.SetActive(false);
+        powerUpWaited += Time.deltaTime;
+        if (killBonus.killPowerUpActive == true)
+        {
+            twoPowerUpsActive = true;
+        }
+        else
+        {
+            firstPowerUpActive = true;
+        }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (speedPowerUpActive)
         {
+            if (twoPowerUpsActive)
+            {
                 powerUpSlider2.gameObject.SetActive(true);
                 powerUpSlider2.maxValue = powerUpWait;
                 powerUpSlider2.value = powerUpWaited;
@@ -36,7 +46,9 @@ public class speedBoostController : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
-            else
+        }
+        else if (twoPowerUpsActive)
+        {
             {
                 powerUpSlider1.gameObject.SetActive(true);
                 powerUpSlider1.maxValue = powerUpWait;
@@ -49,6 +61,7 @@ public class speedBoostController : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+        }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -62,8 +75,8 @@ public class speedBoostController : MonoBehaviour
                 player.speed *= 2;
                 GetComponent<Collider2D>().enabled = false;
                 GetComponent<SpriteRenderer>().enabled = false;
-                
-                
+
+
             }
         }
     }
