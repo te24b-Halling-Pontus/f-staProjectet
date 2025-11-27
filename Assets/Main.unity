@@ -412,8 +412,6 @@ MonoBehaviour:
   maxhp: 3
   hpslider: {fileID: 1051898}
   timeBetweenShots: 0.1
-  powerUpSlider1: {fileID: 1550166936}
-  powerUpSlider2: {fileID: 1010490929}
 --- !u!82 &298520872
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1684,6 +1682,8 @@ MonoBehaviour:
     type: 3}
   enemyPrefab: {fileID: 1455718659814362, guid: bf43fe3ed09cec246b4f2f367f9817fa,
     type: 3}
+  powerUpSlider1: {fileID: 1550166936}
+  powerUpSlider2: {fileID: 1010490929}
 --- !u!4 &1280589992
 Transform:
   m_ObjectHideFlags: 0

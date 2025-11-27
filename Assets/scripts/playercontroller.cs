@@ -16,24 +16,18 @@ public class playercontroller : MonoBehaviour
     [SerializeField]
     GameObject boomprefab;
 
-    [SerializeField]
-    float hp = 0;
+    float hp = 3;
     [SerializeField]
     float maxhp = 3;
 
     [SerializeField]
     Slider hpslider;
     public float timeBetweenShots = 0.5f;
-    [SerializeField]
-    Slider powerUpSlider1;
-    [SerializeField]
-    Slider powerUpSlider2;
+
 
 
     void Start()
     {
-        powerUpSlider1.gameObject.SetActive(false);
-        powerUpSlider2.gameObject.SetActive(false);
         hp = maxhp;
         hpslider.maxValue = maxhp;
         hpslider.value = hp;

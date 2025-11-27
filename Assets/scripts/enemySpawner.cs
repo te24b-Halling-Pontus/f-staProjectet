@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,10 +17,16 @@ public class enemy_spawner : MonoBehaviour
     Slider powerUpSlider1;
     [SerializeField]
     Slider powerUpSlider2;
+
     killBonus killBonus;
+
     speedBoostController speedBoost;
 
-
+    void Start()
+    {
+        killBonus = GameObject.Find("killBonus").GetComponent<killBonus>(); 
+        speedBoost = GameObject.Find("speedBoost").GetComponent<speedBoostController>();
+    }
     void Update()
     {
         waited += Time.deltaTime;
@@ -36,6 +43,24 @@ public class enemy_spawner : MonoBehaviour
                 Instantiate(redLightPreFab);
             }
         }
-                
+        
+        // powerUpSlider1.gameObject.SetActive(killBonus.killPowerUpActive || speedBoost.speedPowerUpActive);
+        // powerUpSlider2.gameObject.SetActive(killBonus.killPowerUpActive && speedBoost.speedPowerUpActive);
+        if (killBonus.killPowerUpActive)
+        {
+            powerUpSlider1.maxValue = killBonus.powerUpWait;
+            powerUpSlider1.value = killBonus.powerUpWaited;
+            if (speedBoost.speedPowerUpActive)
+            {
+                powerUpSlider2.maxValue = speedBoost.powerUpWait;
+                powerUpSlider2.value = speedBoost.powerUpWaited;
+            }
+        }
+        else if (speedBoost.speedPowerUpActive)
+        {
+            powerUpSlider1.maxValue = speedBoost.powerUpWait;
+            powerUpSlider1.value = speedBoost.powerUpWaited;
+        }
     }
 }
+

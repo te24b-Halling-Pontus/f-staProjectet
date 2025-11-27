@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -5785115525554338947}
   - component: {fileID: 5421184537805583109}
   m_Layer: 0
-  m_Name: missilprefab
+  m_Name: missilePrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
